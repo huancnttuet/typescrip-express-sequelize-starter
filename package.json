@@ -9,6 +9,7 @@
     "dev": "cross-env NODE_ENV=dev nodemon",
     "migrate": "npx sequelize db:migrate",
     "migrate:create": "npx sequelize migration:generate --name",
+    "migrate:undo": "npx sequelize db:migrate:undo",
     "build": "swc src -d dist --source-maps --copy-files",
     "build:tsc": "tsc && tsc-alias",
     "test": "jest --forceExit --detectOpenHandles",

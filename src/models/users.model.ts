@@ -1,9 +1,9 @@
-import { Sequelize, DataTypes, Model, Optional } from 'sequelize';
-import { User } from '@interfaces/users.interface';
+import { DataTypes } from 'sequelize';
+import { User } from '@/common/interfaces/users.interface';
+import { sequelize } from '@/databases';
+import DefaultModel from '@/common/abstracts/model.abstract';
 
-export type UserCreationAttributes = Optional<User, 'id' | 'name' | 'email' | 'password'>;
-
-export class UserModel extends Model<User, UserCreationAttributes> implements User {
+export class UserModel extends DefaultModel<User> implements User {
   public id: number;
   public name: string;
   public email: string;
@@ -11,9 +11,10 @@ export class UserModel extends Model<User, UserCreationAttributes> implements Us
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+  getEmailById: (id: number) => Promise<any>;
 }
 
-export default function (sequelize: Sequelize): typeof UserModel {
+export const Users = (): typeof UserModel => {
   UserModel.init(
     {
       id: {
@@ -22,7 +23,7 @@ export default function (sequelize: Sequelize): typeof UserModel {
         type: DataTypes.INTEGER,
       },
       name: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.STRING(45),
       },
       email: {
@@ -40,5 +41,8 @@ export default function (sequelize: Sequelize): typeof UserModel {
     },
   );
 
+  UserModel.prototype.getEmailById = async function (id: number) {
+    return await this.findByPk(id);
+  };
   return UserModel;
-}
+};
