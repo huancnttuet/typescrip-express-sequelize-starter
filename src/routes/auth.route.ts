@@ -2,9 +2,9 @@ import AuthController from '@controllers/auth.controller';
 import { CreateUserDto } from '@dtos/users.dto';
 import authMiddleware from '@middlewares/auth.middleware';
 import validationMiddleware from '@middlewares/validation.middleware';
-import DefaultRoute from '@/common/abstracts/route.abstract';
+import IndexRoute from './index.route';
 
-class AuthRoute extends DefaultRoute {
+class AuthRoute extends IndexRoute {
   initializeRoutes() {
     const { logIn, logOut, signUp } = new AuthController();
     this.router.post('/signup', validationMiddleware(CreateUserDto, 'body'), signUp);

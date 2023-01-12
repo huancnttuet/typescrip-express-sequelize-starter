@@ -1,9 +1,8 @@
-import DefaultController from '@/common/abstracts/controller.abstract';
-import controller from '@/common/decorator/controller';
+import handleError from '@/common/decorator/handleError.decorator';
 import { Request, Response } from 'express';
 
-class IndexController extends DefaultController {
-  @controller
+class IndexController {
+  @handleError
   public index = (req: Request, res: Response) => {
     res.sendStatus(200);
   };

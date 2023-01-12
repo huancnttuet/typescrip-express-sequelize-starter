@@ -14,7 +14,7 @@ const inject = (run: OriginFunction) => {
   return _function;
 };
 
-const controller = (target: Object, propertyKey: string) => {
+const handleError = (target: Object, propertyKey: string) => {
   let currentValue = target[propertyKey];
   Object.defineProperty(target, propertyKey, {
     set: (newValue: any) => {
@@ -24,4 +24,4 @@ const controller = (target: Object, propertyKey: string) => {
   });
 };
 
-export default controller;
+export default handleError;

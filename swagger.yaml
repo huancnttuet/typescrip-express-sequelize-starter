@@ -1,20 +1,32 @@
+swagger: "2.0"
+info:
+  title: REST API
+  description: Example docs
+  version: 1.0.0
+
 tags:
 - name: users
   description: users API
 
 paths:
+############################## users ###############################
 # [GET] users
   /users:
     get:
       tags:
       - users
       summary: Find All Users
+      parameters:
+        - in: query
+          name: search
+          type: string
+          description: The number of items to skip before starting to collect the result set.
       responses:
         200:
           description: 'OK'
         500:
           description: 'Server Error'
-
+    
 # [POST] users
     post:
       tags:
@@ -102,6 +114,407 @@ paths:
           description: 'Conflict'
         500:
           description: 'Server Error'
+############################################################################
+
+################################ product ###################################
+  /product:
+# [GET] product
+    get: 
+      tags:
+        - product
+      summary: Find All Products
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+# [POST] users
+    post:
+      tags:
+      - product
+      summary: Add product
+      parameters:
+      - name: body
+        in: body
+        description: product Data
+        required: true
+        schema:
+          $ref: '#/definitions/product'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] product/id
+  /product/{id}:
+    get:
+      tags:
+      - product
+      summary: Find product By Id
+      parameters:
+      - name: id
+        in: path
+        description: product Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] product/id
+    put:
+      tags:
+      - product
+      summary: Update Product By Id
+      parameters:
+      - name: id
+        in: path
+        description: product Id
+        required: true
+        type: integer
+      - name: body
+        in: body
+        description: product Data
+        required: true
+        schema:
+          $ref: '#/definitions/product'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+# [DELETE] product/id
+    delete:
+      tags:
+      - product
+      summary: Delete product By Id
+      parameters:
+      - name: id
+        in: path
+        description: product Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+######################################################################  
+
+############################# price ##################################
+  /price:
+# [GET] price
+    get: 
+      tags:
+        - price
+      summary: Find All prices
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+# [POST] users
+    post:
+      tags:
+      - price
+      summary: Add price
+      parameters:
+      - name: body
+        in: body
+        description: price Data
+        required: true
+        schema:
+          $ref: '#/definitions/price'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] price/id
+  /price/{id}:
+    get:
+      tags:
+      - price
+      summary: Find price By Id
+      parameters:
+      - name: id
+        in: path
+        description: price Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] price/id
+    put:
+      tags:
+      - price
+      summary: Update price By Id
+      parameters:
+      - name: id
+        in: path
+        description: price Id
+        required: true
+        type: integer
+      - name: body
+        in: body
+        description: price Data
+        required: true
+        schema:
+          $ref: '#/definitions/price'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+# [DELETE] price/id
+    delete:
+      tags:
+      - price
+      summary: Delete price By Id
+      parameters:
+      - name: id
+        in: path
+        description: price Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+#################################################################
+
+############################# currency ##################################
+  /currency:
+# [GET] currency
+    get: 
+      tags:
+        - currency
+      summary: Find All currency
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+# [POST] currency
+    post:
+      tags:
+      - currency
+      summary: Add currency
+      parameters:
+      - name: body
+        in: body
+        description: currency Data
+        required: true
+        schema:
+          $ref: '#/definitions/currency'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] currency/id
+  /currency/{id}:
+    get:
+      tags:
+      - currency
+      summary: Find currency By Id
+      parameters:
+      - name: id
+        in: path
+        description: currency Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] currency/id
+    put:
+      tags:
+      - currency
+      summary: Update currency By Id
+      parameters:
+      - name: id
+        in: path
+        description: currency Id
+        required: true
+        type: integer
+      - name: body
+        in: body
+        description: currency Data
+        required: true
+        schema:
+          $ref: '#/definitions/currency'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+# [DELETE] currency/id
+    delete:
+      tags:
+      - currency
+      summary: Delete currency By Id
+      parameters:
+      - name: id
+        in: path
+        description: currency Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+#################################################################
+
+############################# category ##################################
+  /category:
+# [GET] category
+    get: 
+      tags:
+        - category
+      summary: Find All category
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+# [POST] category
+    post:
+      tags:
+      - category
+      summary: Add category
+      parameters:
+      - name: body
+        in: body
+        description: category Data
+        required: true
+        schema:
+          $ref: '#/definitions/category'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] category/id
+  /category/{id}:
+    get:
+      tags:
+      - category
+      summary: Find category By Id
+      parameters:
+      - name: id
+        in: path
+        description: category Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] category/id
+    put:
+      tags:
+      - category
+      summary: Update category By Id
+      parameters:
+      - name: id
+        in: path
+        description: category Id
+        required: true
+        type: integer
+      - name: body
+        in: body
+        description: category Data
+        required: true
+        schema:
+          $ref: '#/definitions/category'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+# [DELETE] category/id
+    delete:
+      tags:
+      - category
+      summary: Delete category By Id
+      parameters:
+      - name: id
+        in: path
+        description: category Id
+        required: true
+        type: integer
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+#################################################################
 
 # definitions
 definitions:
@@ -118,6 +531,96 @@ definitions:
         type: string
         description: user Password
 
+  product:
+    type: object
+    required:
+        - name
+        - price_id
+        - category_id
+        - description
+        - quantity
+    properties:
+      name:
+        type: string
+        description: product name
+        default: "Product Name"
+      description:
+        type: string
+        description: product description
+        default: "Product description"
+      price_id:
+        type: integer
+        description: product price_id
+        default: 1
+      category_id:
+        type: integer
+        description: product category_id
+        default: 1
+      quantity:
+        type: integer
+        description: product quantity
+        default: 1
+
+  price:
+    type: object
+    required:
+        - origin_price
+        - price
+        - discount
+        - currency_id
+    properties:
+      origin_price:
+        type: string
+        description: price origin_price
+        default: "99999999"
+      price:
+        type: string
+        description: price price
+        default: "1999999"
+      discount:
+        type: string
+        description: price discount
+        default: ""
+      currency_id:
+        type: integer
+        description: price currency_id
+        default: 1
+
+  currency:
+    type: object
+    required:
+        - name
+        - symbol
+        - rate
+    properties:
+      name:
+        type: string
+        description: currency name
+        default: "VND"
+      symbol:
+        type: string
+        description: currency symbol
+        default: "đồng"
+      rate:
+        type: string
+        description: currency rate
+        default: ""
+
+  category:
+    type: object
+    required:
+        - name
+        - code
+    properties:
+      name:
+        type: string
+        description: category name
+        default: "Clothes"
+      code:
+        type: string
+        description: category code
+        default: "CLO"
+      
 schemes:
  - https
  - http

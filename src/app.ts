@@ -7,6 +7,7 @@ import hpp from 'hpp';
 import morgan from 'morgan';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import bodyParser from 'body-parser';
 import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
 import { connectToDatabase } from '@/databases';
 import { Routes } from '@/common/interfaces/routes.interface';
@@ -56,6 +57,7 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+    this.app.use(bodyParser.json());
   }
 
   private initializeRoutes(routes: Routes[]) {

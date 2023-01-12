@@ -1,7 +1,12 @@
 import IndexController from '@controllers/index.controller';
-import DefaultRoute from '@/common/abstracts/route.abstract';
+import { Router } from 'express';
 
-class IndexRoute extends DefaultRoute {
+class IndexRoute {
+  public router: Router;
+  constructor() {
+    this.router = Router();
+    this.initializeRoutes();
+  }
   initializeRoutes() {
     const { index } = new IndexController();
     this.router.get('/', index);
